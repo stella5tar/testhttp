@@ -12,6 +12,7 @@ import UIKit
 class ViewController: UIViewController {
 
     func postToServerFunction(){
+        let country = "Greece"
 
         Alamofire.request(.GET, "http://projecthashtag.website/comm.php?query=getevents")
             .responseJSON { response in
@@ -23,6 +24,8 @@ class ViewController: UIViewController {
                 if let JSON = response.result.value {
                     print("JSON: \(JSON)")
                     print(JSON[0]["dish"])
+//                    let stringArray = JSON as! [String]
+//                    print(stringArray)
                 }
         }
         
@@ -35,6 +38,26 @@ class ViewController: UIViewController {
             
         }
         task.resume()
+        if (country == "India"){
+            print("🇮🇳")
+        } else if (country == "South Korea"){
+            print("🇰🇷")
+        } else if (country == "Mexico"){
+            print("🇲🇽")
+        } else if (country == "Thailand"){
+            print ("🇹🇭")
+        } else if (country == "Vietnam"){
+            print ("🇻🇳")
+        } else if (country == "China"){
+            print ("🇨🇳")
+        } else if (country == "Germany"){
+            print ("🇩🇪")
+        } else if (country == "Greece"){
+            print ("🇬🇷")
+        } else {
+            print("♨️")
+        }
+        print("😀")
         
     }
 
