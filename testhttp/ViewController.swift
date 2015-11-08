@@ -6,11 +6,25 @@
 //  Copyright © 2015 stellastar. All rights reserved.
 //
 
+import Alamofire
 import UIKit
 
 class ViewController: UIViewController {
 
-    func postToServerFunction() {
+    func postToServerFunction(){
+
+        Alamofire.request(.GET, "http://projecthashtag.website/comm.php?query=getevents")
+            .responseJSON { response in
+                print(response.request)  // original URL request
+                print(response.response) // URL response
+                print(response.data)     // server data
+                print(response.result)   // result of response serialization
+                
+                if let JSON = response.result.value {
+                    print("JSON: \(JSON)")
+                    print(JSON[0]["dish"])
+                }
+        }
         
         let url = NSURL(string: "http://projecthashtag.website/comm.php?query=getevents");
         
@@ -18,8 +32,8 @@ class ViewController: UIViewController {
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(url!) {(data, response, error) in
             print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+            
         }
-        
         task.resume()
         
     }
